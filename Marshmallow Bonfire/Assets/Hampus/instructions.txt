@@ -1,0 +1,4 @@
+1. put png called rock on rock1 Game Object in Grid_fixed
+2. put png called rock2 on rock2 Game Object in Grid_fixed
+3. put deactivateObject script on Button Game Object in Grid_fixed
+4. drag bottom right tree Game Object (the one at the bottom and to the right of the portal) to the deactivateObject script
