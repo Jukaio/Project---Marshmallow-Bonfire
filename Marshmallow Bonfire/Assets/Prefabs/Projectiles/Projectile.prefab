@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4521480990812885104}
   - component: {fileID: 2865250479473743360}
   - component: {fileID: 2290596353826979942}
+  - component: {fileID: 2056437298830219483}
   m_Layer: 9
   m_Name: Projectile
   m_TagString: fireball
@@ -131,3 +132,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 563336cfd7fdfa241944f328bc0d215c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &2056437298830219483
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7608996938396417684}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d5eec7d6053d0ec46b0582029192890b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
