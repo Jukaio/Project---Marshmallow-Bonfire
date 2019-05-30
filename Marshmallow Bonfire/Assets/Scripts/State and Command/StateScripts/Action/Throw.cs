@@ -46,7 +46,7 @@ public class Throw : MonoBehaviour
         }
         if (charging)
             return currentState;
-        return States.IDLE;
+        return States.THROWING;
     }
 
     IEnumerator State_Charge(float maxChargeTime, float chargeRate)
