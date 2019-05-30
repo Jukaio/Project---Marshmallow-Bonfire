@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
+    public AudioClip PortalSound;
     private CheckpointController controller;
 
     private void Start()
@@ -21,6 +22,6 @@ public class Checkpoint : MonoBehaviour
         {
             controller.blueCurrentPoint = new Vector3(collision.transform.position.x, collision.transform.position.y, 0f);
         }
-        
+        SoundManager.instance.PlaySingle(PortalSound);
     }
 }

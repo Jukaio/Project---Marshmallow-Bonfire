@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Draggable : MonoBehaviour
 {
+    public AudioClip GrabSound;
     private GameObject player;
 
     void Start()
@@ -21,6 +22,7 @@ public class Draggable : MonoBehaviour
         {
             GrabDeattach();
         }
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -29,6 +31,7 @@ public class Draggable : MonoBehaviour
         {
             player = collision.gameObject;
         }
+        SoundManager.instance.PlaySingle(GrabSound);
     }
 
     public void GrabAttach()
