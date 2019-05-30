@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1745126863863304034}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.99, y: -3.6, z: 0}
+  m_LocalPosition: {x: -1.11, y: -3.6, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_Children: []
   m_Father: {fileID: 8414666564622671130}
@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8414666564622671130}
   - component: {fileID: 8414666564622671131}
-  - component: {fileID: 8414666564622671132}
+  - component: {fileID: 5261035750414890396}
   m_Layer: 0
   m_Name: grabHint 1
   m_TagString: Untagged
@@ -160,7 +160,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &8414666564622671132
+--- !u!95 &5261035750414890396
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ Animator:
   m_GameObject: {fileID: 8414666564622671133}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ff365e61423f6b44fa2f9578bde0662d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 250410693ee9e78499a4e54fbb38ad46, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
