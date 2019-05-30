@@ -32,11 +32,49 @@ public class Grab : MonoBehaviour
         }
         else if (command.MoveLeft()) //move key
         {
-            mechanics.MoveLeft();
+            return States.GRAB_MOVE_LEFT; //GrabMoveLeft
         }
         else if (command.MoveRight()) //move key
         {
-            mechanics.MoveRight();
+            return States.GRAB_MOVE_RIGHT; //GrabMoveRight
+        }
+        return currentState;
+    }
+
+    public States Grab_Move_Left(States currentState)
+    {
+        mechanics.MoveLeft();
+        if (!command.Grab()) //grab key
+        {
+            mechanics.GrabDeattach(otherPlayer);
+            return States.IDLE;
+        }
+        else if (!command.MoveLeft()) //move key
+        {
+            return States.GRAB; //GrabMoveLeft
+        }
+        else if (command.MoveRight()) //move key
+        {
+            return currentState; //GrabMoveRight
+        }
+        return currentState;
+    }
+
+    public States Grab_Move_Right(States currentState)
+    {
+        mechanics.MoveRight();
+        if (!command.Grab()) //grab key
+        {
+            mechanics.GrabDeattach(otherPlayer);
+            return States.IDLE;
+        }
+        else if (!command.MoveRight()) //move key
+        {
+            return States.GRAB; //GrabMoveLeft
+        }
+        else if (command.MoveLeft()) //move key
+        {
+            return currentState; //GrabMoveRight
         }
         return currentState;
     }
