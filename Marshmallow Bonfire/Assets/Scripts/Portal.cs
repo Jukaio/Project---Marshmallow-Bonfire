@@ -6,15 +6,20 @@ using UnityEngine.SceneManagement;
 public class Portal : MonoBehaviour
 {
     SceneScripts scriptsScene;
-    public bool onPortal;
     public bool redOnPortal;
     public bool blueOnPortal;
+
+    private void Start()
+    {
+        scriptsScene = GetComponent<SceneScripts>();
+    }
 
     private void Update()
     {
         if (blueOnPortal && redOnPortal)
-            if (Input.GetKey(KeyCode.Alpha1))
-                scriptsScene.LoadRandom();
+        {
+            StartCoroutine(Load());
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -39,5 +44,11 @@ public class Portal : MonoBehaviour
         {
             blueOnPortal = false;
         }
+    }
+
+    IEnumerator Load()
+    {
+        yield return new WaitForSeconds(1);
+        scriptsScene.LoadNextLevel();
     }
 }
