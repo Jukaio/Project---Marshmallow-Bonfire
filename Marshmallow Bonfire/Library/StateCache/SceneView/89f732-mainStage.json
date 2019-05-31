@@ -1,13 +1,1 @@
-<<<<<<< HEAD
-﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":74.69845581054688,"y":-5.447378635406494,"z":-400.140625},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":125.84440612792969,"orthographic":true}
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":-10.479747772216797,"y":-3.605931043624878,"z":-9.8837890625},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":7.146363258361816,"orthographic":true}
-=======
-﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":-0.819619357585907,"y":-0.6630010604858398,"z":-491.78411865234377},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":13.543771743774414,"orthographic":true}
->>>>>>> master
-=======
-﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":-1.414346694946289,"y":-12.451711654663086,"z":-208.0234375},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":38.53459167480469,"orthographic":true}
->>>>>>> master
->>>>>>> master
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":6.4655632972717289,"y":-5.70679235458374,"z":-129.28314208984376},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":40.34344482421875,"orthographic":true}

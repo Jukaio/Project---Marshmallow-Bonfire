@@ -30,4 +30,5 @@ public class SceneScripts : MonoBehaviour
     {
         Application.Quit();
     }
+
 }
