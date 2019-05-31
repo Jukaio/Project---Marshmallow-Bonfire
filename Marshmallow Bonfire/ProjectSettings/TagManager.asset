@@ -11,6 +11,8 @@ TagManager:
   - ground
   - tileRed
   - tileBlue
+  - redTile
+  - blueTile
   layers:
   - Default
   - TransparentFX
@@ -20,8 +22,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Players
+  - Projectiles
   - 
   - 
   - 
