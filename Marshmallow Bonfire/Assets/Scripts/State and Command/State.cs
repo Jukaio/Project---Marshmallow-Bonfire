@@ -17,6 +17,9 @@ public enum States
     IN_THROW,
     IN_CHARGE,
     IN_FALL,
+    THROWING,
+    GRAB_MOVE_LEFT,
+    GRAB_MOVE_RIGHT
 }
 
 public enum GroundType
@@ -29,6 +32,11 @@ public enum GroundType
 
 public class State : MonoBehaviour
 {
+    Animator anim;
+    public string characterName;
+    public GameObject Body_Side;
+    public GameObject Body;
+
     GameObject walkingTrail;
 
     public string canNotMoveOn;
@@ -54,8 +62,11 @@ public class State : MonoBehaviour
     public GameObject throwSprite;
     public GameObject grabSprite;
 
+    bool inWait;
+
     void Start()
     {
+        anim = GetComponent<Animator>(); 
         for(int i = 0; i < transform.childCount; i++)
         {
             if(transform.GetChild(i).GetComponent<ParticleSystem>() != null)
@@ -67,6 +78,19 @@ public class State : MonoBehaviour
             }
         }
 
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).name == characterName + "_Body_Side")
+            {
+                Body_Side = transform.GetChild(i).gameObject;
+            }
+            if (transform.GetChild(i).name == characterName + "_Body")
+            {
+                Body = transform.GetChild(i).gameObject;
+            }
+        }
+
+
         mechanics = GetComponent<Mechanics>();
         otherMechanics = otherPlayer.GetComponent<Mechanics>();
 
@@ -75,7 +99,7 @@ public class State : MonoBehaviour
 
     void Update()
     {
-        
+
         CheckGroundType();
 
         prevState = currentState;
@@ -84,7 +108,7 @@ public class State : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().flipX = true;
             dirTemp = true;
-            
+
         }
         else if (currentState == States.MOVE_RIGHT)
         {
@@ -106,13 +130,26 @@ public class State : MonoBehaviour
             grabSprite.SetActive(false);
         }
 
-        if(currentState == States.THROW)
+        if (currentState == States.THROW)
         {
             throwSprite.SetActive(true);
         }
         else
         {
             throwSprite.SetActive(false);
+        }
+
+
+        anim.SetInteger("index", (int)currentState);
+        if (dirTemp)
+        {
+            Body.transform.eulerAngles = new Vector3(0, 180, 0);
+            Body_Side.transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+        else if (!dirTemp)
+        {
+            Body.transform.eulerAngles = new Vector3(0, 0, 0);
+            Body_Side.transform.eulerAngles = new Vector3(0, 0, 0);
         }
 
     }
@@ -198,6 +235,14 @@ public class State : MonoBehaviour
                 currentState = GetComponent<Grab>().Main_Grab(currentState);
                 break;
 
+            case States.GRAB_MOVE_LEFT:
+                currentState = GetComponent<Grab>().Grab_Move_Left(currentState);
+                break;
+
+            case States.GRAB_MOVE_RIGHT:
+                currentState = GetComponent<Grab>().Grab_Move_Right(currentState);
+                break;
+
             case States.THROW:
                 if (GetComponent<Throw>() == null)
                 {
@@ -221,10 +266,16 @@ public class State : MonoBehaviour
             case States.IN_CHARGE:
                 break;
 
+            case States.THROWING:
+                if (!inWait)
+                    StartCoroutine(wait(1f / 60 * 20));
+                break;
+
             default:
                 currentState = States.IDLE;
                 break;
         }
+
         walkingTrail.SetActive(false);
     }
 
@@ -281,6 +332,16 @@ public class State : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         groundType = GroundType.AIR;
+    }
+
+    IEnumerator wait(float animLength)
+    {
+        inWait = true;
+        yield return new WaitForSeconds(animLength);
+
+        inWait = false;
+        currentState = States.IDLE;
+
     }
 
 } 
