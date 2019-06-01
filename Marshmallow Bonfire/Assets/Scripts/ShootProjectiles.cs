@@ -31,7 +31,15 @@ public class ShootProjectiles : MonoBehaviour
         GameObject obj = GetObj();
         if (obj != null)
         {
-            obj.transform.position = projectileSpawn.transform.position;
+            if (direction.x < 0)
+            {
+                obj.transform.position = new Vector2(projectileSpawn.transform.position.x - 1f, projectileSpawn.transform.position.y);
+            }
+            else if (direction.x > 0)
+            {
+                obj.transform.position = new Vector2(projectileSpawn.transform.position.x + 1f, projectileSpawn.transform.position.y);
+            }
+            
             obj.GetComponent<Projectile>().MoveProjectile(direction);
         }
     }

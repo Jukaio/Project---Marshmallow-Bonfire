@@ -17,9 +17,6 @@ public class Mechanics : MonoBehaviour
     public float minForce;
     public float maxForce;
 
-    public Tilemap tilemap;
-    public Tile tile;
-
     public Transform projectileSpawn;
     public float projectileCooldown;
     public float projectileCooldownHolder;
