@@ -10,6 +10,8 @@ public class Command : MonoBehaviour
     public KeyCode moveRight; // = KeyCode.D;
     public KeyCode grab; // = KeyCode.Q;
     public KeyCode throws; // = KeyCode.E;
+    public KeyCode up;
+    public KeyCode down;
 
     public KeyCode A;
     public KeyCode B;
@@ -24,6 +26,17 @@ public class Command : MonoBehaviour
     //Dance mat
     public PlayerIndex playerMatIndex;
 
+    public bool Up()
+    {
+        return ((Input.GetKey(up) ||
+        (GamePad.GetState(playerMatIndex).DPad.Up == ButtonState.Pressed)));
+    }
+
+    public bool Down()
+    {
+        return ((Input.GetKey(down) ||
+        (GamePad.GetState(playerMatIndex).DPad.Down == ButtonState.Pressed)));
+    }
 
     public bool MoveLeft()
     {

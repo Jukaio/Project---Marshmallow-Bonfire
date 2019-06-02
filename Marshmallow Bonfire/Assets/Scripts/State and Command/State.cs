@@ -20,7 +20,9 @@ public enum States
     THROWING,
     GRAB_MOVE_LEFT,
     GRAB_MOVE_RIGHT,
-    IN_GRAB_RIGHT
+    IN_GRAB_RIGHT,
+    DUCK,
+    TRY_TO_JUMP
 }
 
 public enum GroundType
@@ -260,6 +262,18 @@ public class State : MonoBehaviour
             case States.THROWING:
                 if (!inWait)
                     StartCoroutine(wait(1f / 60 * 20));
+                break;
+
+            case States.DUCK:
+                if (GetComponent<Idle>() == null)
+                    gameObject.AddComponent<Idle>();
+                currentState = GetComponent<Idle>().Duck(currentState);
+                break;
+
+            case States.TRY_TO_JUMP:
+                if (GetComponent<Idle>() == null)
+                    gameObject.AddComponent<Idle>();
+                currentState = GetComponent<Idle>().Try_To_Jump(currentState);
                 break;
 
             default:

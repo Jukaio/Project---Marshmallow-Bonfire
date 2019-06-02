@@ -76,6 +76,34 @@ public class Idle : MonoBehaviour
         {
             mechanics.ShootProjectile(new Vector2(-8, 4));
         }
+        else if (command.Up())
+        {
+            return States.TRY_TO_JUMP;
+        }
+        else if (command.Down())
+        {
+            return States.DUCK;
+        }
+
+        return currentState;
+    }
+
+    public States Duck(States currentState)
+    {
+
+        if (!command.Down()) // move key
+        {
+            return States.IDLE;
+        }
+        return currentState;
+    }
+    public States Try_To_Jump(States currentState)
+    {
+
+        if (!command.Up()) // move key
+        {
+            return States.IDLE;
+        }
         return currentState;
     }
 }
