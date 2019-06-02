@@ -48,7 +48,7 @@ public class Idle : MonoBehaviour
         }
         else if (command.Grab()) //grab key
         {
-            if (mechanics.InRange(gameObject, otherPlayer))
+            if (mechanics.InRange(gameObject, otherPlayer) && otherPlayer.GetComponent<State>().currentState == States.IDLE)
             {
                 return States.GRAB;
             }
