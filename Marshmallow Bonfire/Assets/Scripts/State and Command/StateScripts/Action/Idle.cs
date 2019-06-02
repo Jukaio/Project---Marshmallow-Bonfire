@@ -24,16 +24,15 @@ public class Idle : MonoBehaviour
 
     public States Air_Idle(States currentState)
     {
-        if (command.MoveLeft()) //GamePad.GetState(PlayerIndex.One).DPad.Left == ButtonState.Pressed
 
-            if (command.MoveLeft()) // move key
-            {
-                mechanics.MoveLeft_Air();
-            }
-            else if (command.MoveRight()) //move key
-            {
-                mechanics.MoveRight_Air();
-            }
+        if (command.MoveLeft()) // move key
+        {
+            mechanics.MoveLeft_Air();
+        }
+        else if (command.MoveRight()) //move key
+        {
+            mechanics.MoveRight_Air();
+        }
 
         return currentState;
     }

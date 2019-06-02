@@ -3018,11 +3018,41 @@ PrefabInstance:
       propertyPath: checkPointController
       value: 
       objectReference: {fileID: 830102627}
+    - target: {fileID: 3982620842804768251, guid: f2921a0152b11e64ba7a894be008cf49,
+        type: 3}
+      propertyPath: throwHeight.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3982620842804768251, guid: f2921a0152b11e64ba7a894be008cf49,
+        type: 3}
+      propertyPath: movementSpeed
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3982620842804768251, guid: f2921a0152b11e64ba7a894be008cf49,
+        type: 3}
+      propertyPath: airMovementSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5552710556902530235, guid: f2921a0152b11e64ba7a894be008cf49,
         type: 3}
       propertyPath: checkPointController
       value: 
       objectReference: {fileID: 830102627}
+    - target: {fileID: 5552710556902530235, guid: f2921a0152b11e64ba7a894be008cf49,
+        type: 3}
+      propertyPath: throwHeight.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552710556902530235, guid: f2921a0152b11e64ba7a894be008cf49,
+        type: 3}
+      propertyPath: movementSpeed
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552710556902530235, guid: f2921a0152b11e64ba7a894be008cf49,
+        type: 3}
+      propertyPath: airMovementSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8847961765107135501, guid: f2921a0152b11e64ba7a894be008cf49,
         type: 3}
       propertyPath: m_Layer

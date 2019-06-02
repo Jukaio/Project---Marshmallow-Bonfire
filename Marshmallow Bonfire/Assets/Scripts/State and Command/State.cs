@@ -322,6 +322,10 @@ public class State : MonoBehaviour
         {
             groundType = GroundType.BLUE;
         }
+        if(prevGroundType == GroundType.AIR)
+        {
+            Debug.Log("I LANDED!!");
+        }
 
         prevGroundTypeString = collision.gameObject.tag;
         prevGroundType = groundType;
@@ -330,6 +334,7 @@ public class State : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         groundType = GroundType.AIR;
+        prevGroundType = groundType;
     }
 
     IEnumerator wait(float animLength)
