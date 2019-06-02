@@ -50,3 +50,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: PlayerGrabbed
+    uniqueID: 884145285
+    locked: 0
+  - name: Raccoon
+    uniqueID: 1959147285
+    locked: 0
+  - name: Dragon
+    uniqueID: 715057039
+    locked: 0

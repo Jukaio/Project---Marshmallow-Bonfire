@@ -23,7 +23,11 @@ public class Grab : MonoBehaviour
 
     public States Main_Grab(States currentState)
     {
-        otherState.currentState = States.IN_GRAB;
+        if (otherPlayer.transform.position.x < transform.position.x)
+            otherState.currentState = States.IN_GRAB_LEFT;
+        else
+            otherState.currentState = States.IN_GRAB_RIGHT;
+
         mechanics.GrabAttach(gameObject, otherPlayer);
         if (!command.Grab()) //grab key
         {

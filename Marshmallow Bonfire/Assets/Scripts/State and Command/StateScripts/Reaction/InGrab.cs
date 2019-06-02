@@ -23,11 +23,22 @@ public class InGrab : MonoBehaviour
 
     public States Main_InGrab(States currentState)
     {
+        
+
         if (otherState.currentState != States.GRAB)
         {
+            if (otherState.currentState == States.GRAB_MOVE_LEFT ||
+                otherState.currentState == States.GRAB_MOVE_RIGHT)
+            {
+                return currentState;
+            }
             mechanics.GrabDeattach(otherPlayer);
             return States.IDLE;
         }
-        return currentState;
+
+        if (otherPlayer.transform.position.x < transform.position.x)
+            return States.IN_GRAB_LEFT;
+        else
+            return States.IN_GRAB_RIGHT;
     }
 }

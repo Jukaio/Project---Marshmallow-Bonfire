@@ -13,15 +13,11 @@ public class OnWrongGround : MonoBehaviour
         command = GetComponent<Command>();
     }
 
-    public States Main_WrongGround(States currentState)
+    public States Main_WrongGround(States currentState, States otherState)
     {
-        if (currentState != States.IN_GRAB &&
-            currentState != States.IN_CHARGE &&
-            currentState != States.IN_THROW)
-        {
-            mechanics.RespawnOnPosition();
-        }
-        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
+        if (otherState != States.GRAB_MOVE_LEFT &&
+            otherState != States.GRAB_MOVE_RIGHT &&
+            otherState != States.GRAB)
         {
             mechanics.RespawnOnPosition();
         }

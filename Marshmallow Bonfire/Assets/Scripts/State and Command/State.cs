@@ -12,14 +12,15 @@ public enum States
     MOVE_LEFT,
     MOVE_RIGHT,
     GRAB,
-    IN_GRAB,
+    IN_GRAB_LEFT,
     THROW,
     IN_THROW,
     IN_CHARGE,
     IN_FALL,
     THROWING,
     GRAB_MOVE_LEFT,
-    GRAB_MOVE_RIGHT
+    GRAB_MOVE_RIGHT,
+    IN_GRAB_RIGHT
 }
 
 public enum GroundType
@@ -36,6 +37,7 @@ public class State : MonoBehaviour
     public string characterName;
     public GameObject Body_Side;
     public GameObject Body;
+
 
     GameObject walkingTrail;
 
@@ -59,9 +61,6 @@ public class State : MonoBehaviour
 
     public bool grounded;
 
-    public GameObject throwSprite;
-    public GameObject grabSprite;
-
     bool inWait;
 
     void Start()
@@ -80,11 +79,11 @@ public class State : MonoBehaviour
 
         for (int i = 0; i < transform.childCount; i++)
         {
-            if (transform.GetChild(i).name == characterName + "_Body_Side")
+            if (transform.GetChild(i).name == name + "_Body_Side")
             {
                 Body_Side = transform.GetChild(i).gameObject;
             }
-            if (transform.GetChild(i).name == characterName + "_Body")
+            if (transform.GetChild(i).name == name + "_Body")
             {
                 Body = transform.GetChild(i).gameObject;
             }
@@ -95,6 +94,8 @@ public class State : MonoBehaviour
         otherMechanics = otherPlayer.GetComponent<Mechanics>();
 
         otherState = otherPlayer.GetComponent<State>();
+
+        changeLayerSorting(name);
     }
 
     void Update()
@@ -104,44 +105,15 @@ public class State : MonoBehaviour
 
         prevState = currentState;
 
-        if (currentState == States.MOVE_LEFT)
-        {
-            GetComponent<SpriteRenderer>().flipX = true;
-            dirTemp = true;
-
-        }
-        else if (currentState == States.MOVE_RIGHT)
-        {
-            GetComponent<SpriteRenderer>().flipX = false;
-            dirTemp = false;
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().flipX = dirTemp;
-        }
-
-
-        if (currentState == States.GRAB)
-        {
-            grabSprite.SetActive(true);
-        }
-        else
-        {
-            grabSprite.SetActive(false);
-        }
-
-        if (currentState == States.THROW)
-        {
-            throwSprite.SetActive(true);
-        }
-        else
-        {
-            throwSprite.SetActive(false);
-        }
 
 
         anim.SetInteger("index", (int)currentState);
-        if (dirTemp)
+        if(currentState == States.IN_GRAB_LEFT ||
+            currentState == States.IN_GRAB_RIGHT)
+        {
+            Body.transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+        else if (dirTemp)
         {
             Body.transform.eulerAngles = new Vector3(0, 180, 0);
             Body_Side.transform.eulerAngles = new Vector3(0, 180, 0);
@@ -151,6 +123,8 @@ public class State : MonoBehaviour
             Body.transform.eulerAngles = new Vector3(0, 0, 0);
             Body_Side.transform.eulerAngles = new Vector3(0, 0, 0);
         }
+
+
 
     }
 
@@ -170,7 +144,7 @@ public class State : MonoBehaviour
                 case GroundType.RED:
                     if (GetComponent<OnWrongGround>() == null)
                         gameObject.AddComponent<OnWrongGround>();
-                    currentState = GetComponent<OnWrongGround>().Main_WrongGround(currentState);
+                    currentState = GetComponent<OnWrongGround>().Main_WrongGround(currentState, otherState.currentState);
                     break;
 
                 case GroundType.AIR:
@@ -189,7 +163,7 @@ public class State : MonoBehaviour
                 case GroundType.BLUE:
                     if (GetComponent<OnWrongGround>() == null)
                         gameObject.AddComponent<OnWrongGround>();
-                    currentState = GetComponent<OnWrongGround>().Main_WrongGround(currentState);
+                    currentState = GetComponent<OnWrongGround>().Main_WrongGround(currentState, otherState.currentState);
                     break;
                 case GroundType.RED:
                     CheckState_Ground();
@@ -210,37 +184,44 @@ public class State : MonoBehaviour
                 if (GetComponent<Idle>() == null)
                     gameObject.AddComponent<Idle>();
                 currentState = GetComponent<Idle>().Main_Idle(currentState);
-
+                changeLayerSorting(name);
                 break;
 
             case States.MOVE_LEFT:
                 if (GetComponent<Move>() == null)
                     gameObject.AddComponent<Move>();
                 currentState = GetComponent<Move>().Main_Left(currentState, groundType);
-
                 walkingTrail.SetActive(true);
+
+                dirTemp = true;
+                changeLayerSorting(name);
                 return;
 
             case States.MOVE_RIGHT:
                 if (GetComponent<Move>() == null)
                     gameObject.AddComponent<Move>();
                 currentState = GetComponent<Move>().Main_Right(currentState, groundType);
-
                 walkingTrail.SetActive(true);
+
+                dirTemp = false;
+                changeLayerSorting(name);
                 return;
 
             case States.GRAB:
                 if (GetComponent<Grab>() == null)
                     gameObject.AddComponent<Grab>();
                 currentState = GetComponent<Grab>().Main_Grab(currentState);
+                changeLayerSorting(name);
                 break;
 
             case States.GRAB_MOVE_LEFT:
                 currentState = GetComponent<Grab>().Grab_Move_Left(currentState);
+                changeLayerSorting(name);
                 break;
 
             case States.GRAB_MOVE_RIGHT:
                 currentState = GetComponent<Grab>().Grab_Move_Right(currentState);
+                changeLayerSorting(name);
                 break;
 
             case States.THROW:
@@ -249,21 +230,31 @@ public class State : MonoBehaviour
                     Throw temp = gameObject.AddComponent<Throw>();
                 }
                 currentState = GetComponent<Throw>().Main_Charge(currentState, mechanics.maxChargeTime, mechanics.chargeRate);
+                changeLayerSorting(name);
                 break;
 
             case States.IN_THROW:
                 if (GetComponent<InThrow>() == null)
                     gameObject.AddComponent<InThrow>();
                 currentState = GetComponent<InThrow>().Main_InThrow(groundType, currentState);
+                changeLayerSorting("PlayerGrabbed");
                 break;
 
-            case States.IN_GRAB:
+            case States.IN_GRAB_LEFT:
                 if (GetComponent<InGrab>() == null)
                     gameObject.AddComponent<InGrab>();
                 currentState = GetComponent<InGrab>().Main_InGrab(currentState);
+                changeLayerSorting("PlayerGrabbed");
+                break;
+            case States.IN_GRAB_RIGHT:
+                if (GetComponent<InGrab>() == null)
+                    gameObject.AddComponent<InGrab>();
+                currentState = GetComponent<InGrab>().Main_InGrab(currentState);
+                changeLayerSorting("PlayerGrabbed");
                 break;
 
             case States.IN_CHARGE:
+                changeLayerSorting("PlayerGrabbed");
                 break;
 
             case States.THROWING:
@@ -287,12 +278,19 @@ public class State : MonoBehaviour
                 if (GetComponent<Move>() == null)
                     gameObject.AddComponent<Move>();
                 currentState = GetComponent<Move>().Air_Left(currentState, groundType);
+
+                dirTemp = true;
+
                 break;
 
             case States.MOVE_RIGHT:
                 if (GetComponent<Move>() == null)
                     gameObject.AddComponent<Move>();
                 currentState = GetComponent<Move>().Air_Right(currentState, groundType);
+
+                dirTemp = false;
+
+
                 break;
 
             case States.IN_FALL:
@@ -342,6 +340,25 @@ public class State : MonoBehaviour
         inWait = false;
         currentState = States.IDLE;
 
+    }
+
+    void changeLayerSorting(string layerName)
+    {
+        for (int i = 0; i < Body.transform.childCount; i++)
+        {
+            if (Body.transform.GetChild(i).GetComponent<SpriteRenderer>() != null)
+            {
+                Body.transform.GetChild(i).GetComponent<SpriteRenderer>().sortingLayerName = layerName;
+            }
+        }
+
+        for (int i = 0; i < Body_Side.transform.childCount; i++)
+        {
+            if (Body_Side.transform.GetChild(i).GetComponent<SpriteRenderer>() != null)
+            {
+                Body_Side.transform.GetChild(i).GetComponent<SpriteRenderer>().sortingLayerName = layerName;
+            }
+        }
     }
 
 } 
