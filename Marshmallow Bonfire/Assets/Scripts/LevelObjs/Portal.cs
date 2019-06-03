@@ -9,6 +9,8 @@ public class Portal : MonoBehaviour
     public bool redOnPortal;
     public bool blueOnPortal;
 
+    public int index;
+
     private void Start()
     {
         scriptsScene = GetComponent<SceneScripts>();
@@ -49,6 +51,6 @@ public class Portal : MonoBehaviour
     IEnumerator Load()
     {
         yield return new WaitForSeconds(1);
-        scriptsScene.LoadNextLevel();
+        scriptsScene.LoadLevel(index);
     }
 }
