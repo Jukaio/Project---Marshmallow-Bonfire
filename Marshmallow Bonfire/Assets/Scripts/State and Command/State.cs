@@ -302,6 +302,14 @@ public class State : MonoBehaviour
     {
         switch(currentState)
         {
+            case States.IDLE:
+                if (GetComponent<InThrow>() == null)
+                    gameObject.AddComponent<InThrow>();
+                currentState = GetComponent<InThrow>().Main_InThrow(groundType, currentState);
+
+
+                break;
+
             case States.MOVE_LEFT:
                 if (GetComponent<Move>() == null)
                     gameObject.AddComponent<Move>();

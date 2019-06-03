@@ -12,6 +12,7 @@ public class Command : MonoBehaviour
     public KeyCode throws; // = KeyCode.E;
     public KeyCode up;
     public KeyCode down;
+    public KeyCode resetButton;
 
     public KeyCode A;
     public KeyCode B;
@@ -25,6 +26,7 @@ public class Command : MonoBehaviour
 
     //Dance mat
     public PlayerIndex playerMatIndex;
+
 
     public bool Up()
     {
@@ -97,5 +99,10 @@ public class Command : MonoBehaviour
         //ChargingThrow();
         prevState = state;
         state = GamePad.GetState(playerPadIndex);
+
+        if(GamePad.GetState(playerMatIndex).Buttons.Back == ButtonState.Pressed || Input.GetKey(resetButton))
+        {
+            transform.position = new Vector2(transform.position.x, transform.position.y + 0.5f);
+        }
     }
 }
