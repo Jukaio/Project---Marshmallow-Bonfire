@@ -11,8 +11,15 @@ public class CameraForTwo : MonoBehaviour
     private Vector3 velocity;
     public float time = 0.5f;
 
+    SceneScripts sceneCode;
+
     public float minZoom = 100f;
     public float maxZoom = 40f;
+
+    private void Start()
+    {
+        sceneCode = GetComponent<SceneScripts>();
+    }
 
     private void LateUpdate()
     {
@@ -20,18 +27,8 @@ public class CameraForTwo : MonoBehaviour
         MoveCamera();
         ZoomCamera();
 
-        foreach (Transform target in targets)
-        {
-            if (target.position.x >= transform.position.x + mainCamera.aspect * mainCamera.orthographicSize)
-            {
-                Debug.Log("HEY LISTEN");
-            }
-            else if (target.position.x <= transform.position.x - mainCamera.aspect * mainCamera.orthographicSize)
-            {
-                Debug.Log("HEY LISTEN");
-            }
-        }
-
+        if (targets[0].GetComponent<Command>().resetActive && targets[1].GetComponent<Command>().resetActive)
+            sceneCode.ReloadScene();
 
     }
 

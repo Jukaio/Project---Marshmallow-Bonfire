@@ -15,14 +15,12 @@ public class ShootProjectiles : MonoBehaviour
         poolAmount = mechanics.mechanic1poolAmount;
         projectileSpawn = mechanics.projectileSpawn;
 
-        Debug.Log(mechanics.mechanic1poolAmount + " in class");
         pooledObjects = new List<GameObject>();
         for (int i = 0; i < poolAmount; i++)
         {
             GameObject obj = Instantiate(mechanics.mechanic1prefab);
             obj.SetActive(false);
             pooledObjects.Add(obj);
-            Debug.Log(i + "hello");
         }
     }
 
@@ -53,9 +51,6 @@ public class ShootProjectiles : MonoBehaviour
                 return pooledObjects[i];
             }
         }
-        //GameObject obj = Instantiate(mechanics.mechanic1prefab);
-        //pooledObjects.Add(obj);
-        //return obj;
         return null;
     }
 

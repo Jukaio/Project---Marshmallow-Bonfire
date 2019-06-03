@@ -12,7 +12,9 @@ public class Command : MonoBehaviour
     public KeyCode throws; // = KeyCode.E;
     public KeyCode up;
     public KeyCode down;
+
     public KeyCode resetButton;
+    public bool resetActive;
 
     public KeyCode A;
     public KeyCode B;
@@ -93,6 +95,11 @@ public class Command : MonoBehaviour
         return (Input.GetKeyDown(Y) ||
         GamePad.GetState(playerMatIndex).Buttons.Y == ButtonState.Pressed);
     }
+
+    public bool reset()
+    {
+        return (GamePad.GetState(playerMatIndex).Buttons.Back == ButtonState.Pressed || Input.GetKey(resetButton));
+    }
     
     private void Update()
     {
@@ -100,9 +107,14 @@ public class Command : MonoBehaviour
         prevState = state;
         state = GamePad.GetState(playerPadIndex);
 
-        if(GamePad.GetState(playerMatIndex).Buttons.Back == ButtonState.Pressed || Input.GetKey(resetButton))
+        if(reset())
         {
-            transform.position = new Vector2(transform.position.x, transform.position.y + 0.5f);
+            resetActive = true;
         }
+        else
+        {
+            resetActive = false;
+        }
+
     }
 }

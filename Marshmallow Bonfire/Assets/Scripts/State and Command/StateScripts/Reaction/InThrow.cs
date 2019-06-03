@@ -7,6 +7,7 @@ public class InThrow : MonoBehaviour
     Mechanics mechanics;
     Command command;
     public float prevY;
+    public float prevPrevY;
     bool firstLoop = true;
 
     private void Awake()
@@ -19,6 +20,7 @@ public class InThrow : MonoBehaviour
     {
         if(firstLoop)
         {
+            prevPrevY = transform.position.y - 20;
             prevY = transform.position.y - 10;
             firstLoop = false;
         }
@@ -32,11 +34,12 @@ public class InThrow : MonoBehaviour
             mechanics.MoveRight_Air();
         }
 
-        if (prevY > transform.position.y)
+        if (prevPrevY >= transform.position.y)
         {
             firstLoop = true;
             return States.IN_FALL;
         }
+        prevPrevY = prevY;
         prevY = transform.position.y;
 
         return States.IN_THROW;

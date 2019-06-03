@@ -67,6 +67,7 @@ public class State : MonoBehaviour
 
     bool inWait;
 
+
     void Start()
     {
         anim = GetComponent<Animator>(); 
@@ -127,7 +128,6 @@ public class State : MonoBehaviour
             Body.transform.eulerAngles = new Vector3(0, 0, 0);
             Body_Side.transform.eulerAngles = new Vector3(0, 0, 0);
         }
-
 
 
     }
