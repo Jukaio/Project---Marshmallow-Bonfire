@@ -35,6 +35,8 @@ public enum GroundType
 
 public class State : MonoBehaviour
 {
+    public Camera mainCamera;
+
     Animator anim;
     public string characterName;
     public GameObject Body_Side;
@@ -190,6 +192,12 @@ public class State : MonoBehaviour
                 break;
 
             case States.MOVE_LEFT:
+                if(transform.position.x <= mainCamera.transform.position.x - mainCamera.aspect * mainCamera.orthographicSize)
+                {
+                    currentState = States.IDLE;
+                    return;
+                }
+
                 if (GetComponent<Move>() == null)
                     gameObject.AddComponent<Move>();
                 currentState = GetComponent<Move>().Main_Left(currentState, groundType);
@@ -200,6 +208,12 @@ public class State : MonoBehaviour
                 return;
 
             case States.MOVE_RIGHT:
+                if (transform.position.x >= mainCamera.transform.position.x + mainCamera.aspect * mainCamera.orthographicSize)
+                {
+                    currentState = States.IDLE;
+                    return;
+                }
+
                 if (GetComponent<Move>() == null)
                     gameObject.AddComponent<Move>();
                 currentState = GetComponent<Move>().Main_Right(currentState, groundType);

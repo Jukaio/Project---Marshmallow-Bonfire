@@ -19,12 +19,28 @@ public class CameraForTwo : MonoBehaviour
         mainCamera = GetComponent<Camera>();
         MoveCamera();
         ZoomCamera();
+
+        foreach (Transform target in targets)
+        {
+            if (target.position.x >= transform.position.x + mainCamera.aspect * mainCamera.orthographicSize)
+            {
+                Debug.Log("HEY LISTEN");
+            }
+            else if (target.position.x <= transform.position.x - mainCamera.aspect * mainCamera.orthographicSize)
+            {
+                Debug.Log("HEY LISTEN");
+            }
+        }
+
+
     }
 
     void ZoomCamera()
     {
         float zoom = Mathf.Lerp(maxZoom, minZoom, GetDistance() / 50);
-        mainCamera.fieldOfView = zoom;
+        //mainCamera.fieldOfView = zoom;
+
+        mainCamera.orthographicSize = zoom;
     }
 
     void MoveCamera()
