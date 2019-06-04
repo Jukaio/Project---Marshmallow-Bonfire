@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scene/HowToController.unity
+=======
+- path: Assets/Scene/Level 1.unity
+>>>>>>> TEmp-
   isLoaded: 1
   isActive: 1
   isSubScene: 0

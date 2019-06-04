@@ -16,6 +16,8 @@ public class Command : MonoBehaviour
     public KeyCode resetButton;
     public bool resetActive;
 
+    public KeyCode startButton;
+
     public KeyCode A;
     public KeyCode B;
     public KeyCode X;
@@ -64,15 +66,14 @@ public class Command : MonoBehaviour
     public bool Throw()
     {
         return (Input.GetKeyDown(throws) ||
-        GamePad.GetState(playerPadIndex).Buttons.X == ButtonState.Pressed && GamePad.GetState(playerPadIndex).Buttons.A == ButtonState.Pressed 
+        GamePad.GetState(playerPadIndex).Buttons.B == ButtonState.Pressed && GamePad.GetState(playerPadIndex).Buttons.Y == ButtonState.Pressed 
         && prevState.Triggers.Right == 0);
     }
 
     public bool ChargeThrow()
     {
         return (Input.GetKey(throws) ||
-       (GamePad.GetState(playerPadIndex).Buttons.X == ButtonState.Pressed && GamePad.GetState(playerPadIndex).Buttons.A == ButtonState.Pressed) || 
-       (GamePad.GetState(playerPadIndex).Buttons.Y == ButtonState.Pressed && GamePad.GetState(playerPadIndex).Buttons.B == ButtonState.Pressed));
+       (GamePad.GetState(playerPadIndex).Buttons.B == ButtonState.Pressed && GamePad.GetState(playerPadIndex).Buttons.Y == ButtonState.Pressed));
     }
 
     public bool ButtonA()
@@ -100,7 +101,12 @@ public class Command : MonoBehaviour
     {
         return (GamePad.GetState(playerMatIndex).Buttons.Back == ButtonState.Pressed || Input.GetKey(resetButton));
     }
-    
+
+    public bool startGame()
+    {
+        return (GamePad.GetState(playerMatIndex).Buttons.Start == ButtonState.Pressed || Input.GetKey(startButton));
+    }
+
     private void Update()
     {
         //ChargingThrow();
