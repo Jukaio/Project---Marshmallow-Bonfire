@@ -16,6 +16,8 @@ public class Command : MonoBehaviour
     public KeyCode resetButton;
     public bool resetActive;
 
+    public KeyCode startButton;
+
     public KeyCode A;
     public KeyCode B;
     public KeyCode X;
@@ -100,7 +102,12 @@ public class Command : MonoBehaviour
     {
         return (GamePad.GetState(playerMatIndex).Buttons.Back == ButtonState.Pressed || Input.GetKey(resetButton));
     }
-    
+
+    public bool startGame()
+    {
+        return (GamePad.GetState(playerMatIndex).Buttons.Start == ButtonState.Pressed || Input.GetKey(startButton));
+    }
+
     private void Update()
     {
         //ChargingThrow();
