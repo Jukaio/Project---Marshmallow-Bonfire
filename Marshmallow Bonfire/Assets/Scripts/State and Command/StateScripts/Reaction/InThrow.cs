@@ -37,11 +37,11 @@ public class InThrow : MonoBehaviour
         if (prevPrevY >= transform.position.y)
         {
             firstLoop = true;
-            return States.IN_FALL;
+            return States.IN_FALL_DOWN;
         }
         prevPrevY = prevY;
         prevY = transform.position.y;
 
-        return States.IN_THROW;
+        return States.IN_FALL_UP;
     }
 }

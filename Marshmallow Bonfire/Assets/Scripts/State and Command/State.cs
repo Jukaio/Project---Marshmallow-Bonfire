@@ -14,10 +14,10 @@ public enum States
     GRAB,
     IN_GRAB_LEFT,
     THROW,
-    IN_THROW,
+    IN_FALL_UP,
     IN_CHARGE,
-    IN_FALL,
-    THROWING,
+    IN_FALL_DOWN,
+    THROW_ANIMATION,
     GRAB_MOVE_LEFT,
     GRAB_MOVE_RIGHT,
     IN_GRAB_RIGHT,
@@ -249,7 +249,7 @@ public class State : MonoBehaviour
                 changeLayerSorting(name);
                 break;
 
-            case States.IN_THROW:
+            case States.IN_FALL_UP:
                 if (GetComponent<InThrow>() == null)
                     gameObject.AddComponent<InThrow>();
                 currentState = GetComponent<InThrow>().Main_InThrow(groundType, currentState);
@@ -273,7 +273,7 @@ public class State : MonoBehaviour
                 changeLayerSorting("PlayerGrabbed");
                 break;
 
-            case States.THROWING:
+            case States.THROW_ANIMATION:
                 if (!inWait)
                     StartCoroutine(wait(1f / 60 * 20));
                 break;
@@ -306,15 +306,36 @@ public class State : MonoBehaviour
                 if (GetComponent<InThrow>() == null)
                     gameObject.AddComponent<InThrow>();
                 currentState = GetComponent<InThrow>().Main_InThrow(groundType, currentState);
-
-
                 break;
+
+            case States.GRAB:
+                currentState = States.IDLE;
+                break;
+
+            case States.GRAB_MOVE_LEFT:
+                currentState = States.IDLE;
+                break;
+
+            case States.GRAB_MOVE_RIGHT:
+                currentState = States.IDLE;
+                break;
+
+            case States.IN_GRAB_LEFT:
+                mechanics.GrabDeattach(gameObject);
+                currentState = States.IDLE;
+                break;
+
+            case States.IN_GRAB_RIGHT:
+                mechanics.GrabDeattach(gameObject);
+                currentState = States.IDLE;
+                break;
+
 
             case States.MOVE_LEFT:
                 if (GetComponent<Move>() == null)
                     gameObject.AddComponent<Move>();
                 currentState = GetComponent<Move>().Air_Left(currentState, groundType);
-
+                currentState = States.IN_FALL_UP;
                 dirTemp = true;
 
                 break;
@@ -323,19 +344,17 @@ public class State : MonoBehaviour
                 if (GetComponent<Move>() == null)
                     gameObject.AddComponent<Move>();
                 currentState = GetComponent<Move>().Air_Right(currentState, groundType);
-
+                currentState = States.IN_FALL_UP;
                 dirTemp = false;
-
-
                 break;
 
-            case States.IN_FALL:
+            case States.IN_FALL_DOWN:
                 if (GetComponent<Idle>() == null)
                     gameObject.AddComponent<Idle>();
                 currentState = GetComponent<Idle>().Air_Idle(currentState);
                 break;
 
-            case States.IN_THROW:
+            case States.IN_FALL_UP:
                 if (GetComponent<InThrow>() == null)
                     gameObject.AddComponent<InThrow>();
                 currentState = GetComponent<InThrow>().Main_InThrow(groundType, currentState);
