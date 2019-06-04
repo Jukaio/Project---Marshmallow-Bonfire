@@ -15,6 +15,7 @@ public class Command : MonoBehaviour
 
     public KeyCode resetButton;
     public bool resetActive;
+    public bool startActive;
 
     public KeyCode startButton;
 
@@ -31,6 +32,10 @@ public class Command : MonoBehaviour
     //Dance mat
     public PlayerIndex playerMatIndex;
 
+    private void Start()
+    {
+        Cursor.visible = false;
+    }
 
     public bool Up()
     {
@@ -120,6 +125,15 @@ public class Command : MonoBehaviour
         else
         {
             resetActive = false;
+        }
+
+        if (startGame())
+        {
+            startActive = true;
+        }
+        else
+        {
+            startActive = false;
         }
 
     }

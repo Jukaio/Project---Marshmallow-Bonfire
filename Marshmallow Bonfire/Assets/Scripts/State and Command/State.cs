@@ -233,12 +233,14 @@ public class State : MonoBehaviour
             case States.GRAB_MOVE_LEFT:
                 currentState = GetComponent<Grab>().Grab_Move_Left(currentState);
                 changeLayerSorting(name);
-                break;
+                walkingTrail.SetActive(true);
+                return;
 
             case States.GRAB_MOVE_RIGHT:
                 currentState = GetComponent<Grab>().Grab_Move_Right(currentState);
                 changeLayerSorting(name);
-                break;
+                walkingTrail.SetActive(true);
+                return;
 
             case States.THROW:
                 if (GetComponent<Throw>() == null)
