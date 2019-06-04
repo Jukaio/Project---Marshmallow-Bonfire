@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
+    public Animator animator;
     SceneScripts scriptsScene;
     public bool redOnPortal;
     public bool blueOnPortal;
@@ -50,6 +51,7 @@ public class Portal : MonoBehaviour
 
     IEnumerator Load()
     {
+        animator.SetTrigger("FadeIn");
         yield return new WaitForSeconds(1);
         scriptsScene.LoadLevel(index);
     }
