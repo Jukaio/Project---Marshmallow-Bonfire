@@ -5185,6 +5185,11 @@ PrefabInstance:
       propertyPath: mechanic1poolAmount
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 464333606205266001, guid: d0a53609692295840ae5c7442f6a3d60,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0a53609692295840ae5c7442f6a3d60, type: 3}
 --- !u!1 &1503208411
