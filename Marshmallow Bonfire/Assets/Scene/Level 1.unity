@@ -4729,6 +4729,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bounce (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5999289055774624889, guid: b8c1a501c92a48943b426b50ece7a925,
+        type: 3}
+      propertyPath: m_TagString
+      value: ground
+      objectReference: {fileID: 0}
     - target: {fileID: 8910466180444103729, guid: b8c1a501c92a48943b426b50ece7a925,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5759,6 +5764,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bounce (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5999289055774624889, guid: b8c1a501c92a48943b426b50ece7a925,
+        type: 3}
+      propertyPath: m_TagString
+      value: ground
       objectReference: {fileID: 0}
     - target: {fileID: 8910466180444103729, guid: b8c1a501c92a48943b426b50ece7a925,
         type: 3}

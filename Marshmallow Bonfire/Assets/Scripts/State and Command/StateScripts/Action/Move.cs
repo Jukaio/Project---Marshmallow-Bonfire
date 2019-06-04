@@ -26,7 +26,7 @@ public class Move : MonoBehaviour
         }
         else if (groundType == GroundType.AIR)
         {
-            return States.IN_FALL;
+            return States.IN_FALL_DOWN;
         }
         return currentState;
     }
@@ -44,7 +44,7 @@ public class Move : MonoBehaviour
         }
         else if (groundType == GroundType.AIR)
         {
-            return States.IN_FALL;
+            return States.IN_FALL_DOWN;
         }
         return currentState;
     }
@@ -54,11 +54,11 @@ public class Move : MonoBehaviour
         mechanics.MoveLeft();
         if (!command.MoveLeft()) //move key
         {
-            return States.IN_FALL;
+            return States.IN_FALL_DOWN;
         }
         else if (command.MoveRight()) //move key
         {
-            return States.IN_FALL;
+            return States.IN_FALL_DOWN;
         }
         else if (groundType != GroundType.AIR)
         {
@@ -72,11 +72,11 @@ public class Move : MonoBehaviour
         mechanics.MoveRight();
         if (!command.MoveRight()) //move key
         {
-            return States.IN_FALL;
+            return States.IN_FALL_DOWN;
         }
         else if (command.MoveLeft()) //move key
         {
-            return States.IN_FALL;
+            return States.IN_FALL_DOWN;
         }
         else if (groundType != GroundType.AIR)
         {

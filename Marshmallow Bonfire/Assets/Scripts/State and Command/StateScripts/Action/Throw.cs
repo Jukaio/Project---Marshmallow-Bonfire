@@ -46,7 +46,7 @@ public class Throw : MonoBehaviour
         }
         if (charging)
             return currentState;
-        return States.THROWING;
+        return States.THROW_ANIMATION;
     }
 
     IEnumerator State_Charge(float maxChargeTime, float chargeRate)
@@ -68,7 +68,7 @@ public class Throw : MonoBehaviour
         }
         chargeBar.SetActive(false);
         GetComponent<Mechanics>().ChargeThrow(GetComponent<State>().otherPlayer, chargeFactor);
-        otherState.currentState = States.IN_THROW;
+        otherState.currentState = States.IN_FALL_UP;
         charging = false;
     }
 
