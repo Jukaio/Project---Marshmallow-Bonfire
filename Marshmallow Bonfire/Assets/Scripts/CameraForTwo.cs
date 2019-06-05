@@ -81,7 +81,7 @@ public class CameraForTwo : MonoBehaviour
     void inputCheck()
     {
         int connectedDevices = 0;
-        string[]joyStickNamesArray = Input.GetJoystickNames();
+        string[] joyStickNamesArray = Input.GetJoystickNames();
         foreach (string input in joyStickNamesArray)
         {
             if (input.Length != 0)
@@ -89,7 +89,7 @@ public class CameraForTwo : MonoBehaviour
                 connectedDevices++;
             }
         }
-        
+
         string[] test = new string[connectedDevices];
         int j = 0;
         for (int i = 0; i < Input.GetJoystickNames().Length; i++)
